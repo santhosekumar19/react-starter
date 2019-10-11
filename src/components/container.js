@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import { Container } from '@material-ui/core';
 import { connect } from 'react-redux';
+import NavBar from './navbar'
 
 
-class Container extends Component{
+class ContainerWrapper extends Component{
     componentDidMount(){
         this.props.init()
     }
     render(){
         return(
-            <>{ this.props.posts.map((el)=>{ console.log(el); return <h1 key={el.id}>{el.title}</h1>})}
-            </>
+            <Container maxWidth="false">
+            <NavBar />
+            { this.props.posts.map((el)=>{ console.log(el); return <h1 key={el.id}>{el.title}</h1>})}
+            </Container>
         )
     }
 }
@@ -28,4 +32,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Container)
+export default connect(mapStateToProps,mapDispatchToProps)(ContainerWrapper)
